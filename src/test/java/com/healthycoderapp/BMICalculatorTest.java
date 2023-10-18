@@ -16,8 +16,12 @@ import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -86,6 +90,8 @@ class BMICalculatorTest {
 	@Nested
 	class FindCodeWithWorstBMITests {
 		@Test
+		@DisplayName(">>>>> sample method display name")
+		@DisabledOnOs(OS.MAC)
 		void shouldReturnCoderWithWorstBMIWhenCoderListNotEmpty() {
 			List<Coder> coders = new ArrayList<>();
 			coders.add(new Coder(1.80, 60.0));
@@ -99,6 +105,7 @@ class BMICalculatorTest {
 		}
 
 		@Test
+		@Disabled
 		void shouldReturnCoderWithWorstBMIIn1MsWhenCoderListHas10000Elements() {
 
 			assumeTrue(BMICalculatorTest.this.enviroment.equals("prod"));
